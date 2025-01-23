@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Привіт, світе</title>
     <style>
         body {
@@ -19,6 +20,20 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тінь для тексту */
         }
     </style>
+    
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const tg = window.Telegram.WebApp;
+
+            // Встановлюємо колір верхньої та нижньої панелей
+            tg.setHeaderColor("bg_color", "#ffc0cb"); // Рожевий колір
+            tg.setBackgroundColor("#ffc0cb"); // Рожевий фон
+            tg.expand(); // Розгортаємо веб-додаток
+
+            // Логування themeParams (опціонально для перевірки)
+            console.log("Theme parameters:", tg.themeParams);
+        });
+    </script>
 </head>
 <body>
     <h1>Привіт, світе</h1>
