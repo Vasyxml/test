@@ -1,16 +1,18 @@
 // Перевірка доступності Telegram Web App API
 if (window.Telegram && window.Telegram.WebApp) {
-    // Ініціалізація Telegram Web App
-    Telegram.WebApp.ready();
+    const app = window.Telegram.WebApp;
 
-    // Ховаємо верхній бар
-    Telegram.WebApp.BackButton.hide();
-    Telegram.WebApp.setHeaderColor("bg_color");
-    Telegram.WebApp.expand();
+    // Ініціалізація Web App
+    app.ready();
 
-    // Забезпечуємо коректне обнулення відступів
-    document.body.style.paddingTop = "calc(var(--tg-safe-area-inset-top) * 0)";
-    console.log("Telegram Web App API працює коректно.");
+    // Запит на перехід у повноекранний режим
+    app.requestFullscreen();
+
+    // Приховування верхнього бару
+    app.setHeaderColor('hidden');
+
+    // Розгортання додатку на весь екран
+    app.expand();
 } else {
     console.error("Telegram Web App API недоступний.");
 }
