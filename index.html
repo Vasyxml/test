@@ -11,21 +11,26 @@
 
         body {
             background-color: pink;
-            margin: 0; /* Прибираємо стандартні відступи */
-            padding-top: calc(var(--tg-safe-area-inset-top) * 0); /* Забезпечуємо повноекранний вигляд */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
             text-align: center;
             color: white;
-            margin-top: 50px;
+            margin: 0;
         }
 
         .list-header {
             text-transform: uppercase;
             font-size: 0.92em;
             color: var(--tg-theme-hint-color);
-            margin: 0 0 10px;
+            margin: 10px 0;
         }
 
         .container {
@@ -44,7 +49,7 @@
             height: 100%;
             transition: width 0.2s, height 0.2s;
             object-fit: cover;
-            max-width: 100%; /* Максимальна ширина для зображень */
+            max-width: 100%;
         }
     </style>
 </head>
@@ -58,13 +63,21 @@
     </div>
 
     <script>
-        // Telegram Web App API
+        // Ініціалізація Telegram Web App
         Telegram.WebApp.ready();
 
-        // Ховаємо верхній бар
-        Telegram.WebApp.BackButton.hide(); // Ховаємо кнопку "Назад"
-        Telegram.WebApp.setHeaderColor("bg_color"); // Встановлюємо прозорий колір заголовка
-        Telegram.WebApp.expand(); // Увімкнення повноекранного режиму
+        // Ховаємо кнопку "Назад" і верхній бар
+        Telegram.WebApp.BackButton.hide(); // Ховає кнопку "Назад"
+        Telegram.WebApp.setHeaderColor("bg_color"); // Робить топ-бар прозорим
+        Telegram.WebApp.expand(); // Активує повноекранний режим
+
+        // Перевіряємо доступні параметри
+        console.log("Safe area insets:");
+        console.log("Top inset: " + window.getComputedStyle(document.documentElement).getPropertyValue('--tg-safe-area-inset-top'));
+        console.log("Bottom inset: " + window.getComputedStyle(document.documentElement).getPropertyValue('--tg-safe-area-inset-bottom'));
+
+        // Додаємо динамічний відступ, якщо top-bar все ще займає місце
+        document.body.style.paddingTop = "calc(var(--tg-safe-area-inset-top) * 0)";
     </script>
 </body>
 </html>
