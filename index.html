@@ -1,52 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="MobileOptimized" content="176" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="robots" content="noindex,nofollow" />
-    <script src="https://telegram.org/js/telegram-web-app.js?2"></script>
-    <script>
-        function setThemeClass() {
-            document.documentElement.className = Telegram.WebApp.colorScheme;
-        }
-
-        Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-        setThemeClass();
-    </script>
-    <title>Telegram Mini App</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-size: 14px;
-            margin: 0;
-            padding: 0;
-            color-scheme: var(--tg-color-scheme);
-            background-color: var(--tg-theme-header-bg-color, red)
-        }
-
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram WebApp</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
-    <div class="content">
-        <h1>Привіт, світе!</h1>
-    </div>
+  <h1>Welcome to My Telegram WebApp</h1>
+  <script>
+    // Функція для встановлення червоного кольору топ-бару
+    function setRedTopBar() {
+      // Перевірка, чи доступний об'єкт Telegram WebApp
+      if (window.Telegram && Telegram.WebApp) {
+        // Встановлення червоного кольору для верхнього бару
+        Telegram.WebApp.setHeaderColor("#FF0000"); // Червоний колір
+        console.log("Top bar color set to red.");
+      } else {
+        console.error("Telegram WebApp object is not available.");
+      }
+    }
+
+    // Виклик функції після завантаження сторінки
+    setRedTopBar();
+  </script>
 </body>
 </html>
