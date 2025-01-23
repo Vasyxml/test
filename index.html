@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <title>Привіт, світе</title>
     <style>
         body {
-            background-color: red; /* Рожевий фон */
+            background-color: blue; /* Рожевий фон */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,18 +18,22 @@
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Тінь для тексту */
         }
+        /* Telegram змінні для стилізації */
+        body {
+            --tg-theme-header-bg-color: #ffc0cb; /* Рожевий колір заголовка */
+        }
     </style>
-    
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             const tg = window.Telegram.WebApp;
 
-            // Встановлюємо колір верхньої та нижньої панелей
-            tg.setHeaderColor("bg_color", "#ffc0cb"); // Рожевий колір
-            tg.setBackgroundColor("#ffc0cb"); // Рожевий фон
-            tg.expand(); // Розгортаємо веб-додаток
+            // Встановлюємо колір заголовка через API
+            tg.setHeaderColor("bg_color", "#ffc0cb"); // Рожевий фон заголовка
+            tg.setBackgroundColor("#ffc0cb"); // Рожевий фон сайту
+            tg.expand(); // Розширюємо веб-додаток
 
-            // Логування themeParams (опціонально для перевірки)
+            // Логування themeParams (для налагодження)
             console.log("Theme parameters:", tg.themeParams);
         });
     </script>
