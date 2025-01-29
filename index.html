@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-        <p>Привіт, світ!</p>
+        <p>Привіт, світ, єс!</p>
     </main>
 
     <script>
@@ -25,12 +25,6 @@
                 Telegram.WebApp.expand();
                 Telegram.WebApp.setHeaderColor("#0000FF"); // Примусово встановлюємо синій
             }
-        });
-        
-        // Забезпечення того, що Telegram WebApp не змінює колір заголовка
-        Telegram.WebApp.onEvent('themeChanged', function () {
-            Telegram.WebApp.setHeaderColor("#0000FF"); 
-            appHeader.style.backgroundColor = "#0000FF"; 
         });
     </script>
 </body>
