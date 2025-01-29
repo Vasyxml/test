@@ -14,7 +14,6 @@
         }
 
         header {
-            background-color: yellow !important;
             padding: 15px;
             font-size: 20px;
             font-weight: bold;
@@ -29,12 +28,21 @@
     </style>
 </head>
 <body>
-    <header>Мій Телеграм Додаток</header>
-    <button id="sendData">Надіслати повідомлення</button>
+    <header id="app-header">Мій Телеграм Додаток</header>
+    <button id="sendData">Може бути</button>
 
     <script>
         Telegram.WebApp.expand(); // Розширює WebApp на весь екран
-        Telegram.WebApp.themeParams = {};
+        
+        // Отримання кольору заголовка з Telegram API
+        const header = document.getElementById('app-header');
+        const themeParams = Telegram.WebApp.themeParams;
+        
+        if (themeParams.header_bg_color) {
+            header.style.backgroundColor = `#${themeParams.header_bg_color}`;
+        } else {
+            header.style.backgroundColor = 'yellow'; // За замовчуванням жовтий
+        }
 
         document.getElementById('sendData').addEventListener('click', function () {
             Telegram.WebApp.sendData("Тестове повідомлення з міні-додатку!");
