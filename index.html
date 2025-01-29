@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <title>Telegram WebApp Theme</title>
     <style>
+        :root {
+            --header-bg-color: var(--tg-theme-header-bg-color, red);
+        }
+
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             text-align: center;
-            margin: 20px;
         }
-        #header {
+
+        header {
+            background-color: var(--header-bg-color);
+            color: white;
             padding: 20px;
             font-size: 24px;
-            color: white;
         }
     </style>
 </head>
 <body>
-    <div id="header">Мій Телеграм Додаток</div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const header = document.getElementById("header");
-            if (window.Telegram && Telegram.WebApp) {
-                const themeColor = Telegram.WebApp.themeParams["header_bg_color"] || "#ff0000";
-                header.style.backgroundColor = `#${themeColor}`;
-            } else {
-                header.style.backgroundColor = "#ff0000";
-            }
-        });
-    </script>
+    <header>Заголовок</header>
 </body>
 </html>
