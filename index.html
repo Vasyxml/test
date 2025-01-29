@@ -1,23 +1,35 @@
-export default function App() {
-  const theme = window.Telegram?.WebApp?.themeParams || {};
-
-  return (
-    <div className="flex flex-col min-h-screen">
-      <header
-        className="p-4 text-white text-center"
-        style={{ backgroundColor: theme.header_bg_color || "yellow" }}
-      >
-        Заголовок
-      </header>
-      <main className="flex-1 flex items-center justify-center">
-        <p>Основний контент</p>
-      </main>
-      <footer
-        className="p-4 text-white text-center"
-        style={{ backgroundColor: theme.secondary_bg_color || "yellow" }}
-      >
-        Футер
-      </footer>
-    </div>
-  );
-}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        #header {
+            padding: 20px;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">Мій Телеграм Додаток</div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const header = document.getElementById("header");
+            if (window.Telegram && Telegram.WebApp) {
+                const themeColor = Telegram.WebApp.themeParams["header_bg_color"] || "#ff0000";
+                header.style.backgroundColor = `#${themeColor}`;
+            } else {
+                header.style.backgroundColor = "#ff0000";
+            }
+        });
+    </script>
+</body>
+</html>
