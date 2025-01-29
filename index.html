@@ -3,29 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
-    <title>Telegram WebApp Theme</title>
+    <title>Привіт, світ!</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        :root {
-            --header-bg-color: var(--tg-theme-header-bg-color, red);
-        }
-
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            text-align: center;
         }
-
         header {
-            background-color: var(--header-bg-color);
+            background-color: red; /* Колір заголовка за замовчуванням */
             color: white;
             padding: 20px;
             font-size: 24px;
+        }
+        main {
+            margin-top: 20px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
     <header>Заголовок</header>
+    <main>
+        <p>Привіт, світ!</p>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.setHeaderColor("red");
+            }
+        });
+    </script>
 </body>
 </html>
