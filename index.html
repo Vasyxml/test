@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Привіт, світ!</title>
+    <title>Telegram WebApp</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
@@ -23,17 +23,65 @@
             margin-top: 20px;
             font-size: 20px;
         }
+        .sect_row {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <header>Заголовок</header>
+    <header id="app_header">Заголовок</header>
     <main>
         <p>Привіт, світ!</p>
     </main>
+
+    <div class="sect_row">
+        <label>Виберіть колір заголовка:</label>
+        <input type="color" id="header_color_input" />
+        <select id="header_color_sel">
+            <option value="bg_color" selected>bg_color</option>
+            <option value="secondary_bg_color">secondary_bg_color</option>
+            <option value="custom" id="header_color_val">custom...</option>
+        </select>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.expand();
                 Telegram.WebApp.setHeaderColor("red");
+            }
+        });
+
+        // Вибір кольору заголовка
+        const headerColorSel = document.getElementById('header_color_sel');
+        const headerColorInput = document.getElementById('header_color_input');
+        const appHeader = document.getElementById('app_header');
+
+        let prevHeaderColorValue = headerColorSel.value;
+        headerColorInput.value = "#ff0000"; // Початковий червоний колір
+
+        headerColorInput.addEventListener('change', function(e) {
+            const color = e.target.value;
+            document.getElementById('header_color_val').textContent = color;
+            headerColorSel.value = 'custom';
+            prevHeaderColorValue = headerColorSel.value;
+            Telegram.WebApp.setHeaderColor(color);
+            appHeader.style.backgroundColor = color;
+        });
+
+        headerColorSel.addEventListener('change', function(e) {
+            const color = e.target.value;
+            if (color === 'custom') {
+                headerColorSel.value = prevHeaderColorValue;
+                headerColorInput.focus();
+                headerColorInput.click();
+            } else {
+                document.getElementById('header_color_val').textContent = 'custom...';
+                let newColor = color === 'bg_color' ? '#ffffff' : '#efefef';
+                Telegram.WebApp.setHeaderColor(newColor);
+                appHeader.style.backgroundColor = newColor;
+                headerColorInput.value = newColor;
+                prevHeaderColorValue = headerColorSel.value;
             }
         });
     </script>
