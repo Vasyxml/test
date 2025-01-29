@@ -13,19 +13,61 @@
             margin: 0;
             padding: 0;
         }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffd500;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <main>
         <p>Привіт, світ, єс!</p>
+        <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
-                Telegram.WebApp.setHeaderColor("#c3ff00"); // Примусово встановлюємо синій
+                Telegram.WebApp.setHeaderColor("#ffd500"); // Примусово встановлюємо колір заголовка
+                fullscreenInit();
             }
         });
+
+        function fullscreenInit() {
+            Telegram.WebApp.onEvent('fullscreenChanged', function() {
+                updateFullscreenButton();
+            });
+
+            Telegram.WebApp.onEvent('fullscreenFailed', function(params) {
+                alert('fullscreenFailed: ' + params.error);
+            });
+
+            updateFullscreenButton();
+        }
+
+        function toggleFullscreen(el) {
+            if (Telegram.WebApp.isFullscreen) {
+                Telegram.WebApp.exitFullscreen();
+            } else {
+                Telegram.WebApp.requestFullscreen();
+            }
+        }
+
+        function updateFullscreenButton() {
+            const fullscreenBtn = document.getElementById('fullscreen_btn');
+            if (Telegram.WebApp.isFullscreen) {
+                fullscreenBtn.innerHTML = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.innerHTML = 'Request Fullscreen';
+            }
+        }
     </script>
 </body>
 </html>
