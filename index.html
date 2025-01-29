@@ -14,7 +14,7 @@
             padding: 0;
         }
         header {
-            background-color: red; /* Колір заголовка за замовчуванням */
+            background-color: #0000FF !important; /* Синій колір заголовка за замовчуванням */
             color: white;
             padding: 20px;
             font-size: 24px;
@@ -29,18 +29,18 @@
     </style>
 </head>
 <body>
-    <header id="app_header">Заголовок</header>
+    <header id="app_header">смит</header>
     <main>
         <p>Привіт, світ!</p>
     </main>
 
     <div class="sect_row">
         <label>Виберіть колір заголовка:</label>
-        <input type="color" id="header_color_input" />
+        <input type="color" id="header_color_input" value="#0000FF" />
         <select id="header_color_sel">
-            <option value="bg_color" selected>bg_color</option>
+            <option value="bg_color">bg_color</option>
             <option value="secondary_bg_color">secondary_bg_color</option>
-            <option value="custom" id="header_color_val">custom...</option>
+            <option value="custom" id="header_color_val" selected>custom...</option>
         </select>
     </div>
 
@@ -48,7 +48,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
-                Telegram.WebApp.setHeaderColor("red");
+                Telegram.WebApp.setHeaderColor("#0000FF"); // Примусово встановлюємо синій
             }
         });
 
@@ -58,7 +58,6 @@
         const appHeader = document.getElementById('app_header');
 
         let prevHeaderColorValue = headerColorSel.value;
-        headerColorInput.value = "#ff0000"; // Початковий червоний колір
 
         headerColorInput.addEventListener('change', function(e) {
             const color = e.target.value;
@@ -83,6 +82,12 @@
                 headerColorInput.value = newColor;
                 prevHeaderColorValue = headerColorSel.value;
             }
+        });
+
+        // Забезпечення того, що Telegram WebApp не змінює колір заголовка
+        Telegram.WebApp.onEvent('themeChanged', function () {
+            Telegram.WebApp.setHeaderColor("#0000FF"); 
+            appHeader.style.backgroundColor = "#0000FF"; 
         });
     </script>
 </body>
