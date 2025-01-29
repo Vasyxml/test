@@ -1,52 +1,23 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App</title>
-   <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
-    <style>
-        body {
-            background-color: pink !important;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
+export default function App() {
+  const theme = window.Telegram?.WebApp?.themeParams || {};
 
-        header {
-            padding: 15px;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <header id="app-header">Мій Телеграм Додаток</header>
-    <button id="sendData">Надіслати повідомлення</button>
-
-    <script>
-        Telegram.WebApp.expand(); // Розширює WebApp на весь екран
-        
-        // Отримання кольору заголовка з Telegram API
-        const header = document.getElementById('app-header');
-        const themeParams = Telegram.WebApp.themeParams;
-        
-        if (themeParams.header_bg_color) {
-            header.style.backgroundColor = `#${themeParams.header_bg_color}`;
-        } else {
-            header.style.backgroundColor = 'yellow'; // За замовчуванням жовтий
-        }
-
-        document.getElementById('sendData').addEventListener('click', function () {
-            Telegram.WebApp.sendData("Тестове повідомлення з міні-додатку!");
-        });
-    </script>
-</body>
-</html>
+  return (
+    <div className="flex flex-col min-h-screen">
+      <header
+        className="p-4 text-white text-center"
+        style={{ backgroundColor: theme.header_bg_color || "yellow" }}
+      >
+        Заголовок
+      </header>
+      <main className="flex-1 flex items-center justify-center">
+        <p>Основний контент</p>
+      </main>
+      <footer
+        className="p-4 text-white text-center"
+        style={{ backgroundColor: theme.secondary_bg_color || "yellow" }}
+      >
+        Футер
+      </footer>
+    </div>
+  );
+}
