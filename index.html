@@ -34,7 +34,7 @@
 </head>
 <body>
     <main>
-        <p>Привіт, світ, 8!</p>
+        <p>Привіт, світ, 2!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
 
         <div class="color-picker">
@@ -52,12 +52,13 @@
                 // Приховуємо кнопку закриття
                 Telegram.WebApp.MainButton.hide();
 
-                // Використовуємо setTimeout для приховування кнопки "Налаштування"
+                // Приховуємо кнопку налаштувань
+                Telegram.WebApp.SettingsButton.hide();
+
+                // Додатковий setTimeout, якщо кнопка ще не завантажилася
                 setTimeout(() => {
-                    if (Telegram.WebApp.SettingsButton.isVisible) {
-                        Telegram.WebApp.SettingsButton.hide();
-                    }
-                }, 100);
+                    Telegram.WebApp.SettingsButton.hide();
+                }, 200);
 
                 Telegram.WebApp.BackButton.show(); // Показуємо кнопку "Назад"
                 Telegram.WebApp.BackButton.onClick(function() {
