@@ -44,6 +44,10 @@
     </main>
 
     <script>
+
+        document.body.style.position = 'relative';
+        document.body.style.zIndex = '9999';
+
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
