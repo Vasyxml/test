@@ -4,24 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram WebApp</title>
-    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #ffd500;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
         button {
             font-size: 16px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             margin-top: 20px;
             border: none;
-            border-radius: 100px;
+            border-radius: 50px;
             background-color: red;
             color: white;
             cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: darkred;
+        }
+        .color-picker {
+            margin-top: 20px;
+        }
+        .color-picker label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .color-picker input {
+            margin-left: 10px;
+            padding: 5px;
         }
     </style>
 </head>
@@ -29,29 +44,28 @@
     <main>
         <p>Привіт, світ, 2!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
+
+        <div class="color-picker">
+            <label for="header_color">Колір заголовка:</label>
+            <input type="color" id="header_color" value="#ffd500">
+        </div>
     </main>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
-                Telegram.WebApp.setHeaderColor("#ffd500"); // Примусово встановлюємо колір заголовка
+                Telegram.WebApp.setHeaderColor("#ffd500"); // Встановлюємо початковий колір заголовка
+                Telegram.WebApp.MainButton.hide(); // Приховуємо кнопку закриття
                 fullscreenInit();
             }
         });
 
-Telegram.WebApp.disableClosingConfirmation();
-
-
         function fullscreenInit() {
-            Telegram.WebApp.onEvent('fullscreenChanged', function() {
-                updateFullscreenButton();
-            });
-
+            Telegram.WebApp.onEvent('fullscreenChanged', updateFullscreenButton);
             Telegram.WebApp.onEvent('fullscreenFailed', function(params) {
                 alert('fullscreenFailed: ' + params.error);
             });
-
             updateFullscreenButton();
         }
 
@@ -65,12 +79,14 @@ Telegram.WebApp.disableClosingConfirmation();
 
         function updateFullscreenButton() {
             const fullscreenBtn = document.getElementById('fullscreen_btn');
-            if (Telegram.WebApp.isFullscreen) {
-                fullscreenBtn.innerHTML = 'Exit Fullscreen';
-            } else {
-                fullscreenBtn.innerHTML = 'Request Fullscreen';
-            }
+            fullscreenBtn.innerHTML = Telegram.WebApp.isFullscreen ? 'Exit Fullscreen' : 'Request Fullscreen';
         }
+
+        document.getElementById('header_color').addEventListener('input', function() {
+            const color = this.value;
+            Telegram.WebApp.setHeaderColor(color);
+            document.body.style.backgroundColor = color;
+        });
     </script>
 </body>
 </html>
