@@ -12,8 +12,6 @@
             background-color: #ffd500;
             margin: 0;
             padding: 20px;
-            position: relative; /* Потрібно для роботи z-index */
-            z-index: 100;
         }
         button {
             font-size: 16px;
@@ -44,10 +42,6 @@
     </main>
 
     <script>
-
-        document.body.style.position = 'relative';
-        document.body.style.zIndex = '9999';
-
         document.addEventListener("DOMContentLoaded", function() {
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
@@ -55,6 +49,10 @@
                 Telegram.WebApp.setBottomBarColor("#ffd500"); // Встановлюємо початковий колір заголовка
                 
                 fullscreenInit();
+                
+                // Підвищуємо z-index для body
+                document.body.style.position = 'relative';
+                document.body.style.zIndex = '9999'; // Встановлюємо високий пріоритет
             }
         });
 
