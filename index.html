@@ -32,7 +32,7 @@
 </head>
 <body>
     <main>
-        <p>Привіт, світ, 11!</p>
+        <p>Привіт, світ, 12!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
 
         <div class="color-picker">
@@ -46,6 +46,7 @@
             if (window.Telegram && Telegram.WebApp) {
                 Telegram.WebApp.expand();
                 Telegram.WebApp.setHeaderColor("#ffd500"); // Встановлюємо початковий колір заголовка
+                Telegram.WebApp.setBottomBarColor("#ffd500"); // Встановлюємо початковий колір заголовка
                 
                 fullscreenInit();
             }
