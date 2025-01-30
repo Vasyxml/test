@@ -27,7 +27,7 @@
 </head>
 <body>
     <main>
-        <p>Привіт, світ, кнопка!</p>
+        <p>Привіт, світ, 1!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
     </main>
 
@@ -40,12 +40,8 @@
             }
         });
 
-        document.addEventListener("DOMContentLoaded", function() {
-    if (window.Telegram && Telegram.WebApp) {
-        Telegram.WebApp.expand(); // Розгортає WebView
-        Telegram.WebApp.MainButton.hide(); // Ховає кнопку закриття
-    }
-});
+Telegram.WebApp.disableClosingConfirmation();
+
 
         function fullscreenInit() {
             Telegram.WebApp.onEvent('fullscreenChanged', function() {
