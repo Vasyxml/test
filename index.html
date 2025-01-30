@@ -24,9 +24,7 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        button:hover {
-            background-color: darkred;
-        }
+      
         .color-picker {
             margin-top: 20px;
         }
@@ -34,7 +32,7 @@
 </head>
 <body>
     <main>
-        <p>Привіт, світ, 10!</p>
+        <p>Привіт, світ, 11!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
 
         <div class="color-picker">
@@ -49,15 +47,6 @@
                 Telegram.WebApp.expand();
                 Telegram.WebApp.setHeaderColor("#ffd500"); // Встановлюємо початковий колір заголовка
                 
-                // ❌ Відключаємо кнопку закриття (щоб вона не працювала)
-                Telegram.WebApp.disableClosingConfirmation();
-
-                Telegram.WebApp.BackButton.show(); // Показуємо кнопку "Назад"
-                Telegram.WebApp.BackButton.onClick(function() {
-                    alert("Кнопка 'Назад' натиснута!"); 
-                    Telegram.WebApp.BackButton.hide(); // Приховуємо кнопку після натискання (за бажанням)
-                });
-
                 fullscreenInit();
             }
         });
