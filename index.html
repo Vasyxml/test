@@ -34,7 +34,7 @@
 </head>
 <body>
     <main>
-        <p>Привіт, світ, 5!</p>
+        <p>Привіт, світ, 6!</p>
         <button id="fullscreen_btn" onclick="toggleFullscreen(this);">Request Fullscreen</button>
 
         <div class="color-picker">
@@ -51,7 +51,7 @@
                 
                 // Приховуємо кнопку закриття та кнопку налаштувань
                 Telegram.WebApp.MainButton.hide();
-                Telegram.WebApp.SettingsButton.hide();
+                Telegram.WebApp.SettingsButton.isVisible('true');
 
                 Telegram.WebApp.BackButton.show(); // Показуємо кнопку "Назад"
 
